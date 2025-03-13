@@ -82,7 +82,7 @@ const raidFireRangeHeroes = [
 ]
 
 const raidFireMeleeHeroes = [
-  { name: "Rey", rarity: "Legend", element: "Fire", role: "Melee", stars: 5, imageName: "Rey" },
+  { name: "Rey", rarity: "Legend", element: "Fire", role: "Melee", stars: 5},
   { name: "Plitvice", rarity: "Legend", element: "Fire", role: "Melee", stars: 5, imageName: "Gods_War_Plitvice" },
   { name: "Winling", rarity: "Legend", element: "Fire", role: "Melee", stars: 5, imageName: "Pill_Refiner_Winling" },
   { name: "Saya",  rarity: "Legend", element: "Fire", role: "Melee", stars: 5, imageName: "Exorcist_Swordswoman_Saya" },
@@ -115,7 +115,7 @@ const raidEarthRangeHeroes = [
 
 const raidEarthMeleeHeroes = [
   { name: "Rue", rarity: "Legend", element: "Earth", role: "Melee", stars: 5, imageName: "Santa27s_Little_Helper_Rue" },
-  { name: "Tasha", rarity: "Legend", element: "Earth", role: "Melee", stars: 5, imageName: "Tasha" },
+  { name: "Tasha", rarity: "Legend", element: "Earth", role: "Melee", stars: 5 },
   { name: "Plague Doctor", rarity: "Legend", element: "Dark", role: "Melee", stars: 5, imageName: "Plague_Doctor" },
   { name: "Bari", rarity: "Legend", element: "Earth", role: "Melee", stars: 5, imageName: "Flower_Girl_Bari" },
 ]
