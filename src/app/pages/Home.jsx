@@ -104,7 +104,7 @@ const Home = () => {
         <motion.section className='w-full' variants={itemVariants}>
           <PixelBorder>
           <p className="text-2xl font-semibold text-justify whitespace-pre-wrap">
-          Crumbled Outlaws adalah komunitas Guardian Tales Indonesia yang menyatukan para petualang dalam satu tempat. <br />Yang Dibangun oleh : Blax di Guild Crumbled Outlaws <br />Di sini, kita berbagi strategi, berbincang tentang hero favorit, dan menjelajahi dunia Kanterbury bersama. Mari bertumbuh, berjuang, dan menaklukkan tantangan bersama!
+          Crumbled Outlaws adalah komunitas Guardian Tales Indonesia yang menyatukan para petualang dalam satu tempat. <br /> <br />Yang Dibangun oleh : Blax Leader Guild Crumbled Outlaws <br /><br />Di sini, kita wajib raid kalau gk di kick! :v
           </p>
           </PixelBorder>
         </motion.section>

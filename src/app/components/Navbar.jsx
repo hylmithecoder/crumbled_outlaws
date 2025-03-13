@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -134,7 +133,7 @@ const Navbar = () => {
         {/* Desktop menu */}
         <div className="hidden md:block">
           <ul className="flex space-x-1">
-            {['Home', 'Events', 'Community', 'Contact'].map((item, index) => (
+            {['Home', 'Events', 'Community'].map((item, index) => (
               <motion.li key={item} initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.1 }}>
                 {/* <a href={`/${item}`} > */}
                 {/* <Link href={`/${item}`}> */}
@@ -162,7 +161,7 @@ const Navbar = () => {
         className="md:hidden overflow-hidden"
       >
         <motion.ul className="flex flex-col mt-4 space-y-2 px-2">
-          {['Home', 'Events', 'Community', 'Contact'].map((item) => (
+          {['Home', 'Events', 'Community'].map((item) => (
             <motion.li key={item} variants={itemVariants}>
               <motion.a 
                 className="text-white bg-white/10 hover:bg-white/20 hover:text-yellow-300 py-2 px-4 rounded-lg block transition-all"
