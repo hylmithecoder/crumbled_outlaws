@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { React,  useEffect, useState } from "react";
+import { Fragment } from "react";
 import { motion } from "framer-motion";
 import { PixelBorder } from "./PixelComponent";
 
@@ -15,11 +16,7 @@ const API_KEY = "AIzaSyDHe-DqbOv57b9roA2c9z4U2Ez3KzXFR7c";
 const SHEET_NAME = "Raid V1";
 
 function RecapRaid() {
-  const [data, setData] = useState([]);
-  const [headers, setHeaders] = useState([]);
-  const [seasons, setSeasons] = useState([]);
-  const [seasonValues, setSeasonValues] = useState([]);
-  const [totalDamage, setTotalDamage] = useState([]);
+  const [seasonsData, setSeasonsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -36,39 +33,9 @@ function RecapRaid() {
       .then((result) => {
         const rows = result.values;
         if (rows && rows.length >= 4) {
-          // Get seasons from row 0
-          const seasonRow = rows[0].filter(cell => cell.startsWith('SEASON'));
-          setSeasons(seasonRow);
-          
-          // Get season values from row 1
-          const seasonValuesRow = [];
-          for (let i = 0; i < rows[1].length; i++) {
-            if (rows[0][i] && rows[0][i].startsWith('SEASON')) {
-              seasonValuesRow.push(rows[1][i]);
-            }
-          }
-          setSeasonValues(seasonValuesRow);
-          
-          // Get total damage values from row 2
-          const totalDamageRow = [];
-          for (let i = 0; i < rows[2].length; i++) {
-            if (rows[0][i] && rows[0][i].startsWith('SEASON')) {
-              totalDamageRow.push(rows[2][i]);
-            }
-          }
-          setTotalDamage(totalDamageRow);
-          
-          // Get headers from row 3
-          const headerRow = rows[3];
-          setHeaders(headerRow);
-          
-          // Format data from row 4 onwards
-          const formattedData = rows.slice(4).map((row) =>
-            Object.fromEntries(
-              headerRow.map((header, index) => [header, row[index] || ""])
-            )
-          );
-          setData(formattedData);
+          // Process the data to group by seasons
+          const processedData = processSheetData(rows);
+          setSeasonsData(processedData);
         }
         setLoading(false);
       })
@@ -79,35 +46,74 @@ function RecapRaid() {
       });
   }, []);
 
-  const renderSeasonHeader = () => {
-    return (
-      <>
-        <tr className="bg-green-800">
-          <th colSpan="2" className="px-4 py-2 border border-gray-600 text-center"></th>
-          {seasons.map((season, index) => (
-            <th key={index} colSpan="3" className="px-4 py-2 border border-gray-600 text-center">
-              {season}
-            </th>
-          ))}
-        </tr>
-        <tr className="bg-blue-600">
-          <th colSpan="2" className="px-4 py-2 border border-gray-600 text-center"></th>
-          {seasonValues.map((value, index) => (
-            <th key={index} colSpan="3" className="px-4 py-2 border border-gray-600 text-center">
-              {value}
-            </th>
-          ))}
-        </tr>
-        <tr className="bg-gray-700">
-          <th colSpan="2" className="px-4 py-2 border border-gray-600 text-center"></th>
-          {totalDamage.map((damage, index) => (
-            <th key={index} colSpan="3" className="px-4 py-2 border border-gray-600 text-center">
-              {damage}
-            </th>
-          ))}
-        </tr>
-      </>
-    );
+  const processSheetData = (rows) => {
+    // Find all season columns
+    const seasons = [];
+    for (let i = 0; i < rows[0].length; i++) {
+      if (rows[0][i] && rows[0][i].includes("SEASON")) {
+        seasons.push({
+          name: rows[0][i],
+          value: rows[1][i] || "",
+          damage: rows[2][i] || "",
+          columnIndex: i
+        });
+      }
+    }
+
+    // Group data by seasons
+    const seasonData = seasons.map((season) => {
+      const colIndex = season.columnIndex;
+      
+      // Get column groups (3 columns per season: rank, damage, percentage)
+      const columnData = {
+        rank: {
+          header: rows[3][colIndex] || "",
+          values: []
+        },
+        damage: {
+          header: rows[3][colIndex + 1] || "",
+          values: []
+        },
+        percentage: {
+          header: rows[3][colIndex + 2] || "",
+          values: []
+        }
+      };
+      
+      // Get player data
+      for (let i = 4; i < rows.length; i++) {
+        const playerData = {
+          no: rows[i][0] || "",
+          ign: rows[i][1] || "",
+          rank: rows[i][colIndex] || "",
+          damage: rows[i][colIndex + 1] || "",
+          percentage: rows[i][colIndex + 2] || ""
+        };
+        
+        columnData.rank.values.push(playerData.rank);
+        columnData.damage.values.push(playerData.damage);
+        columnData.percentage.values.push(playerData.percentage);
+      }
+      
+      return {
+        ...season,
+        data: columnData,
+        players: rows.slice(4).map((row, index) => ({
+          no: row[0] || "",
+          ign: row[1] || "",
+          rank: row[colIndex] || "",
+          damage: row[colIndex + 1] || "",
+          percentage: row[colIndex + 2] || ""
+        }))
+      };
+    });
+    
+    // Sort seasons in descending order (newest first)
+    return seasonData.sort((a, b) => {
+      const numA = parseInt(a.name.match(/\d+/)[0]);
+      const numB = parseInt(b.name.match(/\d+/)[0]);
+      return numB - numA;
+    });
   };
 
   const getPercentageColor = (percentage) => {
@@ -166,47 +172,71 @@ function RecapRaid() {
     >
       {/* <PixelBorder> */}
         <div className="w-full overflow-x-auto">
+          <h2 className="text-xl text-green-400 mb-4">📊 Raid Recap 📊</h2>
           <table className="text-white whitespace-nowrap">
             <thead>
-              {renderSeasonHeader()}
-              <tr className="bg-gray-700">
-                {headers.map((header, index) => (
-                  <th
-                    key={index}
-                    className="px-4 py-2 border border-gray-600 text-center"
-                  >
-                    {header}
+              {/* Season Row */}
+              <tr className="bg-green-800">
+                <th colSpan="2" className="px-4 py-2 border border-gray-600 text-center"></th>
+                {seasonsData.map((season, idx) => (
+                  <th key={idx} colSpan="3" className="px-4 py-2 border border-gray-600 text-center">
+                    {season.name}
                   </th>
+                ))}
+              </tr>
+              {/* Season Value Row */}
+              <tr className="bg-blue-600">
+                <th colSpan="2" className="px-4 py-2 border border-gray-600 text-center"></th>
+                {seasonsData.map((season, idx) => (
+                  <th key={idx} colSpan="3" className="px-4 py-2 border border-gray-600 text-center">
+                    {season.value}
+                  </th>
+                ))}
+              </tr>
+              {/* Season Damage Row */}
+              <tr className="bg-gray-700">
+                <th colSpan="2" className="px-4 py-2 border border-gray-600 text-center"></th>
+                {seasonsData.map((season, idx) => (
+                  <th key={idx} colSpan="3" className="px-4 py-2 border border-gray-600 text-center">
+                    {season.damage}
+                  </th>
+                ))}
+              </tr>
+              {/* Headers Row */}
+              <tr className="bg-gray-800">
+                <th className="px-4 py-2 border border-gray-600 text-center">No</th>
+                <th className="px-4 py-2 border border-gray-600 text-center">IGN</th>
+                {seasonsData.map((season, idx) => (
+                  <Fragment key={idx}>
+                    <th className="px-4 py-2 border border-gray-600 text-center">rank(entry)</th>
+                    <th className="px-4 py-2 border border-gray-600 text-center">Damage</th>
+                    <th className="px-4 py-2 border border-gray-600 text-center">↑↓ (%)</th>
+                  </Fragment>
                 ))}
               </tr>
             </thead>
             <tbody>
-              {data.map((row, rowIndex) => (
-                <tr
-                  key={rowIndex}
-                  className="hover:bg-gray-600 transition-colors"
-                >
-                  {headers.map((header, colIndex) => {
-                    // Apply special formatting for percentage columns
-                    if (header === "↑↓ (%)") {
-                      return (
-                        <td
-                          key={colIndex}
-                          className={`px-4 py-2 border border-gray-600 text-center ${getPercentageColor(row[header])}`}
-                        >
-                          {row[header]}
-                        </td>
-                      );
-                    }
-                    
-                    // Normal cell
+              {/* Get the players from first season data (should be same for all) */}
+              {seasonsData.length > 0 && seasonsData[0].players.map((player, playerIdx) => (
+                <tr key={playerIdx} className="hover:bg-gray-600 transition-colors">
+                  <td className="px-4 py-2 border border-gray-600 text-center">{player.no}</td>
+                  <td className="px-4 py-2 border border-gray-600 text-center">{player.ign}</td>
+                  
+                  {/* Render data for each season */}
+                  {seasonsData.map((season, seasonIdx) => {
+                    const playerData = season.players[playerIdx];
                     return (
-                      <td
-                        key={colIndex}
-                        className="px-4 py-2 border border-gray-600 text-center"
-                      >
-                        {row[header]}
-                      </td>
+                      <Fragment key={seasonIdx}>
+                        <td className="px-4 py-2 border border-gray-600 text-center">
+                          {playerData?.rank || ""}
+                        </td>
+                        <td className="px-4 py-2 border border-gray-600 text-center">
+                          {playerData?.damage || ""}
+                        </td>
+                        <td className={`px-4 py-2 border border-gray-600 text-center ${getPercentageColor(playerData?.percentage)}`}>
+                          {playerData?.percentage || ""}
+                        </td>
+                      </Fragment>
                     );
                   })}
                 </tr>

@@ -110,13 +110,6 @@ const Home = () => {
         </motion.section>
         {/* <motion.section variants={itemVariants}> */}
           <PixelBorder className='w-full mt-6'>
-            <p>
-              <h2 className="text-xl font-semibold text-green-300 mb-4 items-center">
-                <span className="inline-block w-4 h-4 bg-green-300 mr-2"></span>
-                Hero Raid Recap
-                <span className="inline-block w-4 h-4 bg-green-300 ml-2"></span>
-              </h2>
-            </p>
             <RecapRaid/>
           </PixelBorder>
         {/* </motion.section> */}

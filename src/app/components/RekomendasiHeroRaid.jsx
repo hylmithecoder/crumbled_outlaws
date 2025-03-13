@@ -14,27 +14,114 @@ const PixelBorder = ({ children, className = '' }) => {
   );
 };
 
+// Contoh itemVariants untuk animasi (bisa disesuaikan)
+const itemVariants = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: { opacity: 1, scale: 1 },
+};
+
 // Data untuk rekomendasi hero raid
-const raidBasicHeroes = [
-  { name: "Knight Ascend", rarity: "Ascended", element: "Basic", role: "Warrior", stars: 5 , imageName:"Female_Knight_Ascent"},
-  { name: "Druid Kanna", rarity: "Legend", element: "Basic", role: "Warrior", stars: 5},  
+const raidBasicRangeHeroes = [
   { name: "Eunha", rarity: "Legend", element: "Basic", role: "Support / Range", stars: 5, imageName: "Baby_Dokkaebi_Eunha" },
-  { name: "Dohwa", rarity: "Legend", element: "Basic", role: "Range", start: "5", imageName: "Soul_Mage_Dohwa" },
+  { name: "Nari", rarity: "Legend", element: "Basic", role: "Range", stars: 5, imageName: "Eight-tailed_Fox_Nari"},  
+  { name: "Knight Ascent / Future Knight", rarity: "Ascended", element: "Basic", role: "Range", stars: 5 , imageName:"Female_Knight_Ascent / Future_Knight"},  
+  { name: "Dohwa", rarity: "Legend", element: "Basic", role: "Range", stars: 5, imageName: "Soul_Mage_Dohwa" }
 ];
 
-const raidDarkHeroes = [
-  { name: "Plague Doctor", rarity: "Legend", element: "Dark", role: "Warrior", stars: 5, imageName: "Plague_Doctor" },
-  { name: "Beth", rarity: "Legend", element: "Dark", role: "Warrior", stars: 5 },  
-  { name: "Karina Ascend", rarity: "Ascended", element: "Dark", role: "Support", stars: 5, imageName: "karina_ascend" },
-  { name: "Oghma", rarity: "Legend", element: "Dark", role: "Tank / Range", stars: 5,  imageName: "Mecha_Warrior_Oghma"}
+const raidBasicRangeAlternativeHeroes = [
+  { name: "Fern", rarity: "Legend", element: "Basic", role: "Range", stars: 5, imageName: "image"},
+  { name: "Nari", rarity: "Legend", element: "Basic", role: "Range", stars: 5 , imageName:"Eight-tailed_Fox_Nari"},
+  { name: "Eunha", rarity: "Legend", element: "Basic", role: "Support / Range", stars: 5, imageName: "Baby_Dokkaebi_Eunha" },
+  { name: "Dohwa", rarity: "Legend", element: "Basic", role: "Range", start: 5, imageName: "Soul_Mage_Dohwa" }
 ];
 
-const raidLightHeroes = [
-  { name: "Lapice", imageName: "Knight_Lady_Lapice", rarity: "Legend", element: "Light", role: "Warrior", stars: 5 },
-  { name: "MK99", imageName: "MK99", rarity: "Legend", element: "Light", role: "Range", stars: 5 },
-  { name: "H.E.R.O.S KAI", imageName: "H.E.R.O.S_KAI", rarity: "Legend", element: "Light", role: "Warrior", stars: 5 },
-  { name: "Gabriel", rarity: "Legend", element: "Light", role: "Support", stars: 5, imageName: "Archangel_Gabriel" }  
+const raidBasicMeleeHeroes = [
+  { name: "Ameris (Valentine)", rarity: "Legend", element: "Basic", role: "Melee", stars: 5, imageName: "Chocolate_Collector_Ameris",},
+  { name: "Girgas (Valentine)", rarity: "Legend", element: "Basic", role: "Melee", stars: 5, imageName: "Image"},
+  { name: "Mike", rarity: "Legend", element: "Basic", role: "Melee", stars: 5, imageName: "Image"},
+  { name: "Druid Kanna", rarity: "Legend", element: "Basic", role: "Melee", stars: 5}
 ]
+
+const raidDarkRangeHeroes = [
+  { name: "Oghma", rarity: "Legend", element: "Dark", role: "Range", stars: 5,  imageName: "Mecha_Warrior_Oghma"},
+  { name: "Claude", rarity: "Legend", element: "Dark", role: "Warrior", stars: 5, imageName: "Claude" },
+  { name: "Vinette", rarity: "Legend", element: "Dark", role: "Warrior", stars: 5, imageName: "Vinnete"},  
+  { name: "Cammie", rarity: "Legend", element: "Dark", role: "Support", stars: 5, imageName: "Cammie" },
+];
+
+const raidDarkMeleeHeroes = [
+  { name: "Lilith", rarity: "Legend", element: "Dark", role: "Melee", stars: 5, imageName: "Demon_Queen_Lilith"},
+  { name: "Beth", rarity: "Legend", element: "Dark", role: "Melee", stars: 5},
+  { name: "Rey", rarity: "Legend", element: "Fire", role: "Melee", stars: 5},
+  { name: "Doctor Plague", rarity: "Legend", element: "Dark", role: "Melee", stars: 5, imageName: "Plague_Doctor" },
+]
+
+// Lilith, Beth, Rey, Doctor Plague
+
+const raidLightRangeHeroes = [
+  { name: "Cornet", imageName: "Knight_Lady_Lapice", rarity: "Legend", element: "Light", role: "Warrior", stars: 5, imageName: "King_of_the_Hill_Cornet" },
+  { name: "Chun Ryeo / Frieren", imageName: "MK99", rarity: "Legend", element: "Light", role: "Range", stars: 5, imageName: "Chun_Ryeo / Frieren" },
+  { name: "Gabriel", rarity: "Legend", element: "Light", role: "Warrior", stars: 5, imageName: "Archangel_Gabriel" },
+  { name: "Ruri", rarity: "Legend", element: "Light", role: "Support", stars: 5, imageName: "Streamer_Ruri" }  
+]
+
+const raidLightMeleeHeroes = [
+  { name: "K.A.I", imageName: "H.E.R.O.S_KAI", rarity: "Legend", element: "Light", role: "Melee", stars: 5 },
+  { name: "Shapira (Beach)", rarity: "Legend", element: "Light", role: "Melee", stars: 5, imageName: "shapira_summer" },
+  { name: "Lapice", rarity: "Legend", element: "Light", role: "Melee", stars: 5, imageName: "Knight_Lady_Lapice" },
+  { name: "Valencia", rarity: "Legend", element: "Light", role: "Melee", stars: 5 },
+]
+
+// K.A.I, Shapira (Beach), Lapice, Valencia
+
+const raidFireRangeHeroes = [
+  { name: "Elvira Ascent", imageName: "Red_Hood_Elvira_Ascent", rarity: "Ascended", element: "Fire", role: "Range", stars: 5},
+  { name: "Toga", imageName: "Toga", rarity: "Legend", element: "Fire", role: "Range", stars: 5, imageName: "Horn_Huntress_Toga"},
+  { name: "Eunha", rarity: "Legend", element: "Basic", role: "Support / Range", stars: 5, imageName: "Baby_Dokkaebi_Eunha" },
+  { name: "Vishuvac", rarity: "Legend", element: "Fire", role: "Range", stars: 5, imageName: "Dragon_Avatar_Vishuvac" }
+]
+
+const raidFireMeleeHeroes = [
+  { name: "Rey", rarity: "Legend", element: "Fire", role: "Melee", stars: 5, imageName: "Rey" },
+  { name: "Plitvice", rarity: "Legend", element: "Fire", role: "Melee", stars: 5, imageName: "Gods_War_Plitvice" },
+  { name: "Winling", rarity: "Legend", element: "Fire", role: "Melee", stars: 5, imageName: "Pill_Refiner_Winling" },
+  { name: "Saya",  rarity: "Legend", element: "Fire", role: "Melee", stars: 5, imageName: "Saya_Image" },
+]
+
+// Rey, Plitvice, Winling, Saya
+
+const raidWaterRangeHeroes = [
+  { name: "Andras", imageName: "Andras image", rarity: "Legend", element: "Water", role: "Range", stars: 5},
+  { name: "Yun", rarity: "Legend", element: "Water", role: "Range", stars: 5},
+  { name: "Chun Ryeo", rarity: "Legend", element: "Light", role: "Range", stars: 5, imageName: "Chun_Ryeo" },
+  { name: "Cammie", imageName: "Cammie", rarity: "Legend", element: "Dark", role: "Support", stars: 5, imageName: "Cammie" }
+]
+
+const raidWaterMeleeHeroes = [
+  { name: "Yuze (Beach)", rarity: "Legend", element: "Water", role: "Melee", stars: 5, imageName: "Yuze image" },
+  { name: "White Snow / Rimuru", rarity: "Legend", element: "Water", role: "Melee", stars: 5, imageName: "White_Snow image / rimuru image" },
+  { name: "Natsume", rarity: "Legend", element: "Water", role: "Melee", stars: 5, imageName: "Natsume image" },
+  { name: "Angie",  rarity: "Legend", element: "Water", role: "Melee", stars: 5, imageName: "Angie image" },
+]
+
+// Yuze (Beach), White Snow/Rimuru, Natsume, Angie
+
+const raidEarthRangeHeroes = [
+  { name: "Ameris", imageName: "Ameris", rarity: "Legend", element: "Earth", role: "Range", stars: 5},
+  { name: "Kamael", imageName: "Kamael", rarity: "Legend", element: "Earth", role: "Range", stars: 5},
+  { name: "Tina", imageName: "Tina", rarity: "Legend", element: "Earth", role: "Range", stars: 5},
+  { name: "Dabin", imageName: "Dabin", rarity: "Legend", element: "Earth", role: "Range", stars: 5}
+]
+
+const raidEarthMeleeHeroes = [
+  { name: "Rue", imageName: "Rue", rarity: "Legend", element: "Earth", role: "Melee", stars: 5, imageName: "Rue" },
+  { name: "Tasha", imageName: "Tasha", rarity: "Legend", element: "Earth", role: "Melee", stars: 5, imageName: "Tasha" },
+  { name: "Plague Doctor", imageName: "Plague_Doctor", rarity: "Legend", element: "Earth", role: "Melee", stars: 5, imageName: "Plague_Doctor" },
+  { name: "Bari", imageName: "Bari", rarity: "Legend", element: "Earth", role: "Melee", stars: 5, imageName: "Bari" },
+]
+// Toga, Eunha, Vishuvac Andras, Yun, Chun Ryeo, Cammie Ameris, Kamael, Tina, Dabin| Ameris (Valentine), girgas (Valentine), Mike, Kanna
+
+//Rue, Tasha, Plague Doctor, Bari
 
 const HeroRaidRecommendation = () => {
   return (
@@ -55,13 +142,99 @@ const HeroRaidRecommendation = () => {
         <p className="text-gray-400 text-sm mb-4">
           Hero terbaik untuk raid level 100 berdasarkan meta saat ini:
         </p>
+
+        {/* Party Basic */}
         <p className="text-md mt-4">
-          Party Basic:
+          Party Range Basic:
         </p>
         
-        {/* Grid untuk menampilkan hero */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-3">
-          {raidBasicHeroes.map((hero, index) => (
+        {raidBasicRangeHeroes.map((hero, index) => {
+          // Cek apakah hero mengandung dua nama (dipisahkan oleh '/')
+          const hasDualHero = hero.name.includes("/");
+          const portraitProps = {
+            name: hero.name,
+            rarity: hero.rarity,
+            element: hero.element,
+            role: hero.role,
+            stars: hero.stars,
+            onClick: () =>
+              console.log(`${hero.name} details clicked`),
+          };
+
+          if (hasDualHero) {
+            portraitProps.imageNames = hero.imageName.split("/").map((s) => s.trim());
+          } else {
+            portraitProps.imageName = hero.imageName;
+          }
+
+          return (
+            <motion.div
+              key={index}
+              initial="hidden"
+              animate="visible"
+              variants={itemVariants}
+              transition={{ delay: index * 0.1 }}
+            >
+              <PortraitHero {...portraitProps} />
+            </motion.div>
+          );
+        })}
+      </div>
+        <p className='text-sm mt-4'>
+          Alternatif
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-3">
+          {raidBasicRangeAlternativeHeroes.map((hero, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <PortraitHero
+                name={hero.name}
+                imageName={hero.imageName}
+                rarity={hero.rarity}
+                element={hero.element}
+                role={hero.role}
+                stars={hero.stars}
+                onClick={() => console.log(`${hero.name} details clicked`)}
+              />
+            </motion.div>
+          ))}
+        </div>
+
+        <p className='text-sm mt-4'>
+          Party Melee Basic:
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-3">
+          {raidBasicMeleeHeroes.map((hero, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <PortraitHero
+                name={hero.name}
+                imageName={hero.imageName}
+                rarity={hero.rarity}
+                element={hero.element}
+                role={hero.role}
+                stars={hero.stars}
+                onClick={() => console.log(`${hero.name} details clicked`)}
+              />
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Party Kegelapan */}
+        <p className='text-sm mt-4'>
+          Party Range Gelap: 
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-3">
+          {raidDarkRangeHeroes.map((hero, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.9 }}
@@ -82,10 +255,10 @@ const HeroRaidRecommendation = () => {
         </div>
 
         <p className='text-md mt-4'>
-          Party Dark: 
+          Party Melee Gelap: 
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-3">
-          {raidDarkHeroes.map((hero, index) => (
+          {raidDarkMeleeHeroes.map((hero, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.9 }}
@@ -105,11 +278,226 @@ const HeroRaidRecommendation = () => {
           ))}
         </div>
 
-        <p className='text-md mt-4'>
-          Party Cahaya:
+        {/* Party Cahaya */}
+        <p className='text-sm mt-4'>
+          Party Range Cahaya:
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-3">
-          {raidLightHeroes.map((hero, index) => (
+          {raidLightRangeHeroes.map((hero, index) => {
+            const hasDualHero = hero.name.includes("/");
+            const portraitProps = {
+              name: hero.name,
+              rarity: hero.rarity,
+              element: hero.element,
+              role: hero.role,
+              stars: hero.stars,
+              onClick: () =>
+                console.log(`${hero.name} details clicked`),
+            };
+  
+            if (hasDualHero) {
+              portraitProps.imageNames = hero.imageName.split("/").map((s) => s.trim());
+            } else {
+              portraitProps.imageName = hero.imageName;
+            }
+  
+            return (
+              <motion.div
+                key={index}
+                initial="hidden"
+                animate="visible"
+                variants={itemVariants}
+                transition={{ delay: index * 0.1 }}
+              >
+                <PortraitHero {...portraitProps} />
+              </motion.div>
+            );
+          })}
+        </div>
+
+        <p className='text-md mt-4'>
+          Party Melee Cahaya:
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-3">
+        {raidLightMeleeHeroes.map((hero, index) => {
+          // Cek apakah hero mengandung dua nama (dipisahkan oleh '/')
+          const hasDualHero = hero.name.includes("/");
+          const portraitProps = {
+            name: hero.name,
+            rarity: hero.rarity,
+            element: hero.element,
+            role: hero.role,
+            stars: hero.stars,
+            onClick: () =>
+              console.log(`${hero.name} details clicked`),
+          };
+
+          if (hasDualHero) {
+            // Asumsikan properti imageName juga berformat serupa, misalnya "knight / future_knight"
+            // Lakukan split dan trim untuk mendapatkan array dua nama gambar
+            portraitProps.imageNames = hero.imageName.split("/").map((s) => s.trim());
+          } else {
+            portraitProps.imageName = hero.imageName;
+          }
+
+          return (
+            <motion.div
+              key={index}
+              initial="hidden"
+              animate="visible"
+              variants={itemVariants}
+              transition={{ delay: index * 0.1 }}
+            >
+              <PortraitHero {...portraitProps} />
+            </motion.div>
+          );
+        })}
+        </div>
+
+        {/* Party Api */}
+        <p className='text-sm mt-4'>
+          Party Range Api:
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-3">
+          {raidFireRangeHeroes.map((hero, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <PortraitHero
+                name={hero.name}
+                imageName={hero.imageName}
+                rarity={hero.rarity}
+                element={hero.element}
+                role={hero.role}
+                stars={hero.stars}
+                onClick={() => console.log(`${hero.name} details clicked`)}
+              />
+            </motion.div>
+          ))}
+        </div>
+
+
+        <p className='text-sm mt-4'>
+          Party Melee Api
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-3">
+          {raidFireMeleeHeroes.map((hero, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <PortraitHero
+                name={hero.name}
+                imageName={hero.imageName}
+                rarity={hero.rarity}
+                element={hero.element}
+                role={hero.role}
+                stars={hero.stars}
+                onClick={() => console.log(`${hero.name} details clicked`)}
+              />
+            </motion.div>
+          ))}
+        </div>
+
+          {/* Party Air */}
+        <p className='text-sm mt-4'>
+          Party Range Air:
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-3">
+          {raidWaterRangeHeroes.map((hero, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <PortraitHero
+                name={hero.name}
+                imageName={hero.imageName}
+                rarity={hero.rarity}
+                element={hero.element}
+                role={hero.role}
+                stars={hero.stars}
+                onClick={() => console.log(`${hero.name} details clicked`)}
+              />
+            </motion.div>
+          ))}
+        </div>
+
+
+        <p className='text-sm mt-4'>
+          Party Melee Air
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-3">
+        {raidWaterMeleeHeroes.map((hero, index) => {
+          // Cek apakah hero mengandung dua nama (dipisahkan oleh '/')
+          const hasDualHero = hero.name.includes("/");
+          const portraitProps = {
+            name: hero.name,
+            rarity: hero.rarity,
+            element: hero.element,
+            role: hero.role,
+            stars: hero.stars,
+            onClick: () =>
+              console.log(`${hero.name} details clicked`),
+          };
+
+          if (hasDualHero) {
+            portraitProps.imageNames = hero.imageName.split("/").map((s) => s.trim());
+          } else {
+            portraitProps.imageName = hero.imageName;
+          }
+
+          return (
+            <motion.div
+              key={index}
+              initial="hidden"
+              animate="visible"
+              variants={itemVariants}
+              transition={{ delay: index * 0.1 }}
+            >
+              <PortraitHero {...portraitProps} />
+            </motion.div>
+          );
+        })}
+        </div>
+
+
+        {/* Party Bumi */}
+        <p className='text-sm mt-4'>
+          Party Range Bumi:
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-3">
+          {raidEarthRangeHeroes.map((hero, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <PortraitHero
+                name={hero.name}
+                imageName={hero.imageName}
+                rarity={hero.rarity}
+                element={hero.element}
+                role={hero.role}
+                stars={hero.stars}
+                onClick={() => console.log(`${hero.name} details clicked`)}
+              />
+            </motion.div>
+          ))}
+        </div>
+
+        <p className='text-sm mt-4'>
+          Party Melee Bumi
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-3">
+          {raidEarthMeleeHeroes.map((hero, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.9 }}
