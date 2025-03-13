@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Crumbled Outlaws",
-  description: "A fan Indonesia community for Guardian Tales game",
+  description: "Hanya Komunitas Kecil Guardian Tales Di Indonesia 😊",
 };
 
 export default function RootLayout({ children }) {
