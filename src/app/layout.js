@@ -2,33 +2,23 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-// ✅ Menggunakan generateMetadata() agar lebih optimal
 export const generateMetadata = () => ({
-  title: "Crumbled Outlaws",
-  description: "Komunitas kecil dari Guardian Tales yang solid dan penuh petualangan. Bergabunglah bersama kami 😊",
+  title: "🚀 Komunitas Guardian Tales Indonesia | Crumbled Outlaws 🎮",
+  description: "Bergabunglah dengan komunitas Guardian Tales Indonesia yang solid! Diskusi, tips, event eksklusif, dan squad terbaik. Daftar sekarang! 💥",
   keywords: [
-    "Komunitas Guardian Tales Indonesia",
     "Guardian Tales Indonesia",
-    "Guardian Tales",
-    "komunitas game",
-    "Crumbled Outlaws",
-    "RPG",
-    "petualangan",
-    "game online"
+    "Komunitas Guardian Tales",
+    "Guild Guardian Tales",
+    "Tips Guardian Tales",
+    "Event Guardian Tales",
+    "Crumbled Outlaws"
   ].join(", "),
   openGraph: {
-    title: "Crumbled Outlaws - Komunitas Guardian Tales",
-    description: "Hanya Komunitas Kecil Guardian Tales Di Indonesia.",
+    title: "🚀 Komunitas Guardian Tales Indonesia - Crumbled Outlaws 🎮",
+    description: "Gabung dengan komunitas terbaik Guardian Tales di Indonesia! Dapatkan event eksklusif & squad terbaik.",
     url: "https://crumbledoutlaws.vercel.app",
     type: "website",
     siteName: "Crumbled Outlaws",
@@ -37,18 +27,19 @@ export const generateMetadata = () => ({
         url: "/logo512.png",
         width: 512,
         height: 512,
-        alt: "Crumbled Outlaws Logo",
+        alt: "Crumbled Outlaws - Komunitas Guardian Tales",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    site: "@CrumbledOutlaws", // Jika tidak punya Twitter, hapus saja
-    title: "Crumbled Outlaws - Komunitas Guardian Tales",
-    description: "Hanya Komunitas Kecil Guardian Tales di Indonesia.",
+    site: "@CrumbledOutlaws",
+    title: "Guardian Tales Indonesia | Komunitas Terbaik! 🎮",
+    description: "Gabung komunitas Guardian Tales Indonesia terbaik & temukan squad terbaikmu!",
     images: ["/logo512.png"],
   },
   metadataBase: new URL("https://crumbledoutlaws.vercel.app"),
+  robots: "index, follow",
 });
 
 export default function RootLayout({ children }) {
