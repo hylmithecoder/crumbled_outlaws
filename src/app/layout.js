@@ -40,6 +40,13 @@ export const generateMetadata = () => ({
   },
   metadataBase: new URL("https://crumbledoutlaws.vercel.app"),
   robots: "index, follow",
+  canonical: "https://crumbledoutlaws.vercel.app",
+  alternates: {
+    languages: {
+      'id-ID': 'https://crumbledoutlaws.vercel.app',
+      'en-US': 'https://crumbledoutlaws.vercel.app/en'
+    }
+  }
 });
 
 export default function RootLayout({ children }) {

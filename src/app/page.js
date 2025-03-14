@@ -1,13 +1,11 @@
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 
-function App () {
+export default function HomePage () {
   return (
-    <div>
+    <>
       <Navbar />
       <Home />
-    </div>
+    </>
   );
 }
-
-export default App;

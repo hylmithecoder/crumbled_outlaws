@@ -7,7 +7,7 @@ import HeroRaidRecommendation from '../components/RekomendasiHeroRaid';
 import { PixelBorder, PixelButton } from '../components/PixelComponent';
 import RecapRaid from '../components/RecapRaid';
 
-const Home = () => {
+const HomeEnglish = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   
   useEffect(() => {
@@ -104,7 +104,7 @@ const Home = () => {
         <motion.section className='w-full' variants={itemVariants}>
           <PixelBorder>
           <p className="text-2xl font-semibold text-justify whitespace-pre-wrap">
-          Crumbled Outlaws adalah komunitas Guardian Tales Indonesia yang menyatukan para petualang dalam satu tempat. <br /> <br />Yang Dibangun oleh : Blax Sebagai Leader Guild Crumbled Outlaws <br /><br />Di sini, kita wajib raid kalau gk di kick! :v
+          Crumbled Outlaws is a Guardian Tales Indonesia community that unites adventurers in one place. <br /> <br />Built by: Blax as Leader Guild Crumbled Outlaws <br /><br />Here, we must raid if not kicked! :v
           </p>
           </PixelBorder>
         </motion.section>
@@ -157,16 +157,16 @@ const Home = () => {
         >
           <PixelBorder className="text-center mx-auto max-w-screen-md">
             <h2 className="text-xl font-semibold text-red-300 mb-4">
-              Join Komunitas Kami!
+              Join Our Community!
             </h2>
             <p className="text-sm mb-4">
-              Terhubung dengan sesama Guardian, berbagi strategi, dan taklukkan dunia piksel bersama-sama!
+              Connect with fellow Guardians, share strategies, and conquer the pixel world together!
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6">
               <a href="https://chat.whatsapp.com/GyDz7UWVJQZ3HrzwtAHjKD" target="_blank">
                 <div className="bg-gray-800 p-3 rounded hover:bg-gray-700 transition-colors">
                   <div className="text-4xl mb-2">
-                    <img src="whatsapp-icon.svg" className='w-12 mx-auto' alt='Whats app'/>
+                    <img src="whatsapp-icon.svg" className='w-12 mx-auto'/>
                   </div>
                   <div className="text-sm">Whats App</div>
                 </div>
@@ -174,7 +174,7 @@ const Home = () => {
               <a href="https://discord.com/invite/EVzhXJS8VT" target='_blank'>
                 <div className="bg-gray-800 p-3 rounded hover:bg-gray-700 transition-colors">
                   <div className='text-4xl mb-2'>
-                    <img src='discord-icon.svg' className='w-12 mx-auto' alt="Discord"/>
+                    <img src='discord-icon.svg' className='w-12 mx-auto'/>
                   </div>
                   <div className="text-sm">Discord</div>
                 </div>
@@ -182,9 +182,9 @@ const Home = () => {
               <a href="https://docs.google.com/spreadsheets/d/1u8BFwntoTFga9tkLvTVWY_Xd3Vvg_b1q8owQFyEM_wQ/edit?usp=drivesdk" target='_blank'>
                 <div className="bg-gray-800 p-3 rounded hover:bg-gray-700 transition-colors">
                   <div className='text-4xl mb-2'>
-                    <img src='spreadsheet.svg' className='w-12 mx-auto' alt="google spreadsheet"/>
+                    <img src='spreadsheet.svg' className='w-12 mx-auto'/>
                   </div>
-                  <div className="text-sm">Rekap Raid</div>
+                  <div className="text-sm">Raid Recap</div>
                 </div>
               </a>
             </div>
@@ -197,4 +197,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomeEnglish;
