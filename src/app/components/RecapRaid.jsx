@@ -171,7 +171,7 @@ function RecapRaid() {
       animate="visible"
     >
       {/* <PixelBorder> */}
-        <div className="w-full overflow-x-auto">
+        <div className="w-full max-h-96 overflow-y-auto overflow-x-auto">
           <h2 className="text-xl text-green-400 mb-4">📊 Raid Recap 📊</h2>
           <table className="text-white whitespace-nowrap">
             <thead>
