@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Crumbled Outlaws",
-  description: "Komunitas kecil dari Guardian Tales yang solid dan penuh petualangan. Bergabunglah bersama kami!",
+  description: "Komunitas kecil dari Guardian Tales yang solid dan penuh petualangan. Bergabunglah bersama kami 😊",
   keywords: "Komunitas Guardian Tales Indonesia, Guardian Tales Indonesia, Guardian Tales, komunitas game, Crumbled Outlaws, RPG, petualangan, game online",
   openGraph: {
     title: "Crumbled Outlaws - Komunitas Guardian Tales",
@@ -82,6 +83,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
+        <Analytics/>
       </body>
     </html>
   );
