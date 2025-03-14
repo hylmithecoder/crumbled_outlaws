@@ -78,9 +78,6 @@ const PortraitHero = ({
       <div className="relative">
         {/* Bagian gambar hero */}
         <div className="relative h-40 md:h-56 overflow-hidden bg-gradient-to-b from-gray-700 to-gray-900">
-          {/* Pixel Frame Border */}
-          <div className="absolute inset-0 border-4 border-dashed border-opacity-20 pointer-events-none"></div>
-
           {Array.isArray(imageNames) && imageNames.length === 2 ? (
             <div className="flex">
               <motion.img
@@ -122,12 +119,6 @@ const PortraitHero = ({
               }}
             />
           )}
-
-          {/* Dekorasi pixel corners */}
-          <div className="absolute top-0 left-0 w-3 h-3 bg-gray-900"></div>
-          <div className="absolute top-0 right-0 w-3 h-3 bg-gray-900"></div>
-          <div className="absolute bottom-0 left-0 w-3 h-3 bg-gray-900"></div>
-          <div className="absolute bottom-0 right-0 w-3 h-3 bg-gray-900"></div>
 
           {/* Stars Rating */}
           <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 px-2 py-1 text-center text-xs">
