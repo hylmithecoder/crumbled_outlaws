@@ -167,6 +167,7 @@ const Navbar = () => {
                 className="text-white bg-white/10 hover:bg-white/20 hover:text-yellow-300 py-2 px-4 rounded-lg block transition-all"
                 whileHover={hoverEffect}
                 whileTap={{ scale: 0.95 }}
+                href="/#"
               >
                 {item}
               </motion.a>
