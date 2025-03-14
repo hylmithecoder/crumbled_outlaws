@@ -12,78 +12,51 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
+// ✅ Menggunakan generateMetadata() agar lebih optimal
+export const generateMetadata = () => ({
   title: "Crumbled Outlaws",
   description: "Komunitas kecil dari Guardian Tales yang solid dan penuh petualangan. Bergabunglah bersama kami 😊",
-  keywords: "Komunitas Guardian Tales Indonesia, Guardian Tales Indonesia, Guardian Tales, komunitas game, Crumbled Outlaws, RPG, petualangan, game online",
+  keywords: [
+    "Komunitas Guardian Tales Indonesia",
+    "Guardian Tales Indonesia",
+    "Guardian Tales",
+    "komunitas game",
+    "Crumbled Outlaws",
+    "RPG",
+    "petualangan",
+    "game online"
+  ].join(", "),
   openGraph: {
     title: "Crumbled Outlaws - Komunitas Guardian Tales",
-    description: "Hanya Komunitas Kecil Guardian Tales Di indonesia.",
-    url: "https://crumbledoutlaws.vercel.app", // Sesuaikan dengan URL asli website
+    description: "Hanya Komunitas Kecil Guardian Tales Di Indonesia.",
+    url: "https://crumbledoutlaws.vercel.app",
     type: "website",
     siteName: "Crumbled Outlaws",
     images: [
       {
-        url: "/logo512.png", // Menggunakan path dari folder public
+        url: "/logo512.png",
         width: 512,
         height: 512,
         alt: "Crumbled Outlaws Logo",
       },
     ],
   },
-  whatsapp: {
+  twitter: {
     card: "summary_large_image",
-    site: "https://chat.whatsapp.com/GyDz7UWVJQZ3HrzwtAHjKD", // Sesuaikan dengan akun Twitter komunitas
+    site: "@CrumbledOutlaws", // Jika tidak punya Twitter, hapus saja
     title: "Crumbled Outlaws - Komunitas Guardian Tales",
-    description: "Hanya Komunitas Kecil Guardian Tales di indonesia.",
-    images: ["/logo512.png"], // Menggunakan logo yang ada di public/
+    description: "Hanya Komunitas Kecil Guardian Tales di Indonesia.",
+    images: ["/logo512.png"],
   },
-  discord: {
-    title: "Crumbled Outlaws - Komunitas Guardian Tales",
-    description: "Group Komunitas Kecil Guardian Tales di indonesia.",
-    url: "https://discord.gg/4a6u3VQ4",
-  }
-};
+  metadataBase: new URL("https://crumbledoutlaws.vercel.app"),
+});
 
 export default function RootLayout({ children }) {
   return (
     <html lang="id">
-      <head>
-        <meta name="keywords" content={metadata.keywords} />
-        <meta name="google-site-verification" content="MPT-XLw5In0KgaQXDhZk6BNZJVq9Vck024cBWTiBYbU" />
-        <meta property="og:type" content={metadata.openGraph.type} />
-        <meta property="og:title" content={metadata.openGraph.title} />
-        <meta property="og:description" content={metadata.openGraph.description} />
-        <meta property="og:url" content={metadata.openGraph.url} />
-        <meta property="og:site_name" content={metadata.openGraph.siteName} />
-        <meta property="og:image" content={metadata.openGraph.images[0].url} />
-        <meta property="og:image:width" content={metadata.openGraph.images[0].width} />
-        <meta property="og:image:height" content={metadata.openGraph.images[0].height} />
-        <meta name="whatsapp:card" content={metadata.whatsapp.card} />
-        <meta name="whatsapp:site" content={metadata.whatsapp.site} />
-        <meta name="whatsapp:title" content={metadata.whatsapp.title} />
-        <meta name="whatsapp:description" content={metadata.whatsapp.description} />
-        <meta name="whatsapp:image" content={metadata.whatsapp.images[0]} />
-        <meta name="discord:title" content={metadata.discord.title} />
-        <meta name="discord:description" content={metadata.discord.description} />
-        <meta name="discord:url" content={metadata.discord.url} />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": metadata.openGraph.siteName,
-              "url": metadata.openGraph.url,
-              "logo": metadata.openGraph.images[0].url,
-              "description": metadata.openGraph.description,
-            }),
-          }}
-        />
-      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
-        <Analytics/>
+        <Analytics />
       </body>
     </html>
   );
