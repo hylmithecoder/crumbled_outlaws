@@ -145,7 +145,7 @@ const Home = () => {
         </motion.section> */}
 
         <motion.section 
-          className="w-full mt-6"
+          className="w-full mt-6 overflow-h-auto"
           variants={itemVariants}
         >
           <HeroRaidRecommendation/>
