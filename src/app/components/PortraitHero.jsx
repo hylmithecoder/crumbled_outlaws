@@ -81,7 +81,7 @@ const PortraitHero = ({
         <div className="relative h-40 md:h-56 overflow-hidden bg-gradient-to-b from-gray-700 to-gray-900">
           {Array.isArray(imageNames) && imageNames.length === 2 ? (
             <div className="flex">
-              <Image
+              <motion.img
                 src={`/images/heroes/${imageNames[0]}.png`}
                 alt={name.split("/")[0].trim()}
                 className="w-1/2 h-full object-contain pixelate"
@@ -93,7 +93,7 @@ const PortraitHero = ({
                   e.target.alt = "Image not found";
                 }}
               />
-              <Image
+              <motion.img
                 src={`/images/heroes/${imageNames[1]}.png`}
                 alt={name.split("/")[1]?.trim() || "Hero"}
                 className="w-1/2 h-full object-contain pixelate"
@@ -107,7 +107,7 @@ const PortraitHero = ({
               />
             </div>
           ) : (
-            <Image
+            <motion.img
               src={`/images/heroes/${imageName || name.toLowerCase()}.png`}
               alt={name}
               className="w-full h-full object-contain pixelate"
