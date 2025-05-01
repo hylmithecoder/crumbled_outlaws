@@ -7,14 +7,13 @@ import { motion } from "framer-motion";
 const PortraitHero = ({
   name,
   imageName,
-  imageNames, // Opsional: jika dua hero dalam portrait, passing array dua elemen
+  imageNames,
   rarity = "Rare",
   element = "Basic",
   role = "Warrior",
   stars = 3,
   onClick,
 }) => {
-  // Konfigurasi warna berdasarkan rarity
   const rarityConfig = {
     Normal: {
       bgColor: "bg-gray-700",
@@ -66,6 +65,18 @@ const PortraitHero = ({
     ));
   };
 
+  // const getImagePath = (heroName) => {
+  //   try {
+  //     console.log("Hero Name:", heroName);
+  //     // Gunakan dynamic import
+  //     return require(`@/app/images/heroes/${heroName}.png`).default;
+  //   } catch (e) {
+  //     // Fallback jika gambar tidak ditemukan
+  //     return `https://placehold.co/120?text=${heroName}`;
+  //   }
+  // };
+  // console.log("Image Path:", getImagePath("Girgas"));
+
   return (
     <motion.div
       className={`bg-gray-800 rounded-lg overflow-hidden border-2 ${rarityStyle.borderColor} hover:shadow-lg transition-all cursor-pointer`}
@@ -81,20 +92,24 @@ const PortraitHero = ({
         <div className="relative h-40 md:h-56 overflow-hidden bg-gradient-to-b from-gray-700 to-gray-900">
           {Array.isArray(imageNames) && imageNames.length === 2 ? (
             <div className="flex">
-              <motion.img
-                src={`/images/heroes/${imageNames[0]}.png`}
+              <Image
+                src={"/images/heroes/" + imageNames[0]+".png"}
                 alt={name.split("/")[0].trim()}
                 className="w-1/2 h-full object-contain pixelate"
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.3 }}
+                width={1280}
+                height={720}
                 onError={(e) => {
                   e.target.src = `https://placehold.co/120?text=${name}`;
                   e.target.alt = "Image not found";
                 }}
               />
-              <motion.img
-                src={`/images/heroes/${imageNames[1]}.png`}
+              <Image
+                width={1280}
+                height={720}
+                src={"/images/heroes/" + imageNames[1]+".png"}
                 alt={name.split("/")[1]?.trim() || "Hero"}
                 className="w-1/2 h-full object-contain pixelate"
                 initial={{ scale: 0.8, opacity: 0 }}
@@ -107,8 +122,10 @@ const PortraitHero = ({
               />
             </div>
           ) : (
-            <motion.img
-              src={`/images/heroes/${imageName || name.toLowerCase()}.png`}
+            <Image
+              width={2400}
+              height={1080}
+              src={"/images/heroes/" + imageName + ".png"}
               alt={name}
               className="w-full h-full object-contain pixelate"
               initial={{ scale: 0.8, opacity: 0 }}
@@ -120,6 +137,11 @@ const PortraitHero = ({
               }}
             />
           )}
+          {/* <Image
+            src={getImagePath(imageName)}
+            alt={name}
+            className="absolute inset-0 w-full h-full object-cover opacity-0"
+          /> */}
 
           {/* Stars Rating */}
           <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 px-2 py-1 text-center text-xs">

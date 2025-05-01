@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import Footer from '../components/Footer';
+import Footer from '../components/Footer_en';
 import HeroRaidRecommendation from '../components/RekomendasiHeroRaid';
 import { PixelBorder, PixelButton } from '../components/PixelComponent';
 import RecapRaid from '../components/RecapRaid';

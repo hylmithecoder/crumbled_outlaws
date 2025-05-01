@@ -29,17 +29,17 @@ const raidBasicRangeHeroes = [
 ];
 
 const raidBasicRangeAlternativeHeroes = [
-  { name: "Fern", rarity: "Legend", element: "Basic", role: "Range", stars: 5},
+  { name: "Fern", rarity: "Legend", imageName: "Fern", element: "Basic", role: "Range", stars: 5},
   { name: "Nari", rarity: "Legend", element: "Basic", role: "Range", stars: 5 , imageName:"Eight-tailed_Fox_Nari"},
   { name: "Eunha", rarity: "Legend", element: "Basic", role: "Support / Range", stars: 5, imageName: "Baby_Dokkaebi_Eunha" },
   { name: "Dohwa", rarity: "Legend", element: "Basic", role: "Range", stars: 5, imageName: "Soul_Mage_Dohwa" }
 ];
 
 const raidBasicMeleeHeroes = [
-  { name: "Ameris (Valentine)", rarity: "Legend", element: "Basic", role: "Melee", stars: 5, imageName: "Chocolate_Collector_Ameris",},
-  { name: "Girgas (Valentine)", rarity: "Legend", element: "Basic", role: "Melee", stars: 5, imageName: "Image"},
+  { name: "Ameris (Valentine)", rarity: "Legend", element: "Basic", role: "Melee", stars: 5, imageName: "Chocolate_Collector_Ameris"},
+  { name: "Girgas (Valentine)", imageName: "Girgas", rarity: "Legend", element: "Basic", role: "Melee", stars: 5},
   { name: "Mike", rarity: "Legend", element: "Basic", role: "Melee", stars: 5, imageName: "ronin_cat_mike"},
-  { name: "Druid Kanna", rarity: "Legend", element: "Basic", role: "Melee", stars: 5}
+  { name: "Druid Kanna", imageName: "druid kanna" ,rarity: "Legend", element: "Basic", role: "Melee", stars: 5}
 ]
 
 const raidDarkRangeHeroes = [
@@ -51,8 +51,8 @@ const raidDarkRangeHeroes = [
 
 const raidDarkMeleeHeroes = [
   { name: "Lilith", rarity: "Legend", element: "Dark", role: "Melee", stars: 5, imageName: "Demon_Queen_Lilith"},
-  { name: "Beth", rarity: "Legend", element: "Dark", role: "Melee", stars: 5},
-  { name: "Rey", rarity: "Legend", element: "Fire", role: "Melee", stars: 5},
+  { name: "Beth", imageName: "beth", rarity: "Legend", element: "Dark", role: "Melee", stars: 5},
+  { name: "Rey", imageName: "rey", rarity: "Legend", element: "Fire", role: "Melee", stars: 5},
   { name: "Doctor Plague", rarity: "Legend", element: "Dark", role: "Melee", stars: 5, imageName: "Plague_Doctor" },
 ]
 
@@ -69,7 +69,7 @@ const raidLightMeleeHeroes = [
   { name: "H.E.R.O.S K.A.I", imageName: "H.E.R.O.S_KAI", rarity: "Legend", element: "Light", role: "Melee", stars: 5 },
   { name: "Shapira (Beach)", rarity: "Legend", element: "Light", role: "Melee", stars: 5, imageName: "shapira_summer" },
   { name: "Lapice", rarity: "Legend", element: "Light", role: "Melee", stars: 5, imageName: "Knight_Lady_Lapice" },
-  { name: "Valencia", rarity: "Legend", element: "Light", role: "Melee", stars: 5 },
+  { name: "Valencia", imageName: "valencia", rarity: "Legend", element: "Light", role: "Melee", stars: 5 },
 ]
 
 // K.A.I, Shapira (Beach), Lapice, Valencia
@@ -82,7 +82,7 @@ const raidFireRangeHeroes = [
 ]
 
 const raidFireMeleeHeroes = [
-  { name: "Rey", rarity: "Legend", element: "Fire", role: "Melee", stars: 5},
+  { name: "Rey", imageName: "rey" , rarity: "Legend", element: "Fire", role: "Melee", stars: 5},
   { name: "Plitvice", rarity: "Legend", element: "Fire", role: "Melee", stars: 5, imageName: "Gods_War_Plitvice" },
   { name: "Winling", rarity: "Legend", element: "Fire", role: "Melee", stars: 5, imageName: "Pill_Refiner_Winling" },
   { name: "Saya",  rarity: "Legend", element: "Fire", role: "Melee", stars: 5, imageName: "Exorcist_Swordswoman_Saya" },
@@ -92,7 +92,7 @@ const raidFireMeleeHeroes = [
 
 const raidWaterRangeHeroes = [
   { name: "Andras", imageName: "Slayer_Andras", rarity: "Legend", element: "Water", role: "Range", stars: 5},
-  { name: "Yun", rarity: "Legend", element: "Water", role: "Range", stars: 5},
+  { name: "Yun", imageName: "yun" ,rarity: "Legend", element: "Water", role: "Range", stars: 5},
   { name: "Chun Ryeo", rarity: "Legend", element: "Light", role: "Range", stars: 5, imageName: "Chun_Ryeo" },
   { name: "Cammie", imageName: "Cammie", rarity: "Legend", element: "Dark", role: "Support", stars: 5, imageName: "Cammie" }
 ]
@@ -107,7 +107,7 @@ const raidWaterMeleeHeroes = [
 // Yuze (Beach), White Snow/Rimuru, Natsume, Angie
 
 const raidEarthRangeHeroes = [
-  { name: "Ameris", rarity: "Legend", element: "Earth", role: "Range", stars: 5},
+  { name: "Ameris", imageName: "ameris" , rarity: "Legend", element: "Earth", role: "Range", stars: 5},
   { name: "Kamael", imageName: "God_of_Harvest_Kamael", rarity: "Legend", element: "Earth", role: "Range", stars: 5},
   { name: "Tinia", imageName: "Dancing_Archer_Tinia", rarity: "Legend", element: "Earth", role: "Range", stars: 5},
   { name: "Dabin", imageName: "Novice_Heavenly_Maiden_Dabin", rarity: "Legend", element: "Earth", role: "Range", stars: 5}
@@ -115,13 +115,10 @@ const raidEarthRangeHeroes = [
 
 const raidEarthMeleeHeroes = [
   { name: "Rue", rarity: "Legend", element: "Earth", role: "Melee", stars: 5, imageName: "Santa27s_Little_Helper_Rue" },
-  { name: "Tasha", rarity: "Legend", element: "Earth", role: "Melee", stars: 5 },
+  { name: "Tasha", imageName: "tasha" , rarity: "Legend", element: "Earth", role: "Melee", stars: 5 },
   { name: "Plague Doctor", rarity: "Legend", element: "Dark", role: "Melee", stars: 5, imageName: "Plague_Doctor" },
   { name: "Bari", rarity: "Legend", element: "Earth", role: "Melee", stars: 5, imageName: "Flower_Girl_Bari" },
 ]
-// Toga, Eunha, Vishuvac Andras, Yun, Chun Ryeo, Cammie Ameris, Kamael, Tina, Dabin| Ameris (Valentine), girgas (Valentine), Mike, Kanna
-
-//Rue, Tasha, Plague Doctor, Bari
 
 const HeroRaidRecommendation = () => {
   return (

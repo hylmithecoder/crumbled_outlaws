@@ -7,8 +7,12 @@ import { PixelBorder } from "./PixelComponent";
 
 // Animation variants for framer-motion
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { type: "spring", stiffness: 100 }
+  }
 };
 
 const SHEET_ID = "1u8BFwntoTFga9tkLvTVWY_Xd3Vvg_b1q8owQFyEM_wQ";
@@ -137,11 +141,11 @@ function RecapRaid() {
         initial="hidden"
         animate="visible"
       >
-        <PixelBorder>
+        {/* <PixelBorder> */}
           <p className="text-center text-xl text-white py-6">
             Loading data...
           </p>
-        </PixelBorder>
+        {/* </PixelBorder> */}
       </motion.section>
     );
   }
@@ -151,14 +155,14 @@ function RecapRaid() {
       <motion.section
         className="w-full"
         variants={itemVariants}
-        initial="hidden"
-        animate="visible"
+        // initial="hidden"
+        // animate="visible"
       >
-        <PixelBorder>
+        {/* <PixelBorder> */}
           <p className="text-center text-xl text-red-500 py-6">
             Error: {error.message}
           </p>
-        </PixelBorder>
+        {/* </PixelBorder> */}
       </motion.section>
     );
   }
@@ -167,8 +171,8 @@ function RecapRaid() {
     <motion.section
       className="w-full"
       variants={itemVariants}
-      initial="hidden"
-      animate="visible"
+      // initial="hidden"
+      // animate="visible"
     >
       {/* <PixelBorder> */}
         <div className="w-full max-h-96 overflow-y-auto overflow-x-auto">
