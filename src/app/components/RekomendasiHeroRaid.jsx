@@ -29,7 +29,7 @@ const raidBasicRangeHeroes = [
 ];
 
 const raidBasicRangeAlternativeHeroes = [
-  { name: "Fern", rarity: "Legend", imageName: "Fern", element: "Basic", role: "Range", stars: 5},
+  { name: "Fern", rarity: "Legend", imageName: "fern", element: "Basic", role: "Range", stars: 5},
   { name: "Nari", rarity: "Legend", element: "Basic", role: "Range", stars: 5 , imageName:"Eight-tailed_Fox_Nari"},
   { name: "Eunha", rarity: "Legend", element: "Basic", role: "Support / Range", stars: 5, imageName: "Baby_Dokkaebi_Eunha" },
   { name: "Dohwa", rarity: "Legend", element: "Basic", role: "Range", stars: 5, imageName: "Soul_Mage_Dohwa" }
